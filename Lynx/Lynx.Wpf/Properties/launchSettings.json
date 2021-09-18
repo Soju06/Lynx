@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Lynx.Wpf": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

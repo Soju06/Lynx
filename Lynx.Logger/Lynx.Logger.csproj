@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Lynx\Lynx\Soju06\ILovePython.cs" Link="Soju06\ILovePython.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Soju06\" />
+  </ItemGroup>
+
+</Project>
