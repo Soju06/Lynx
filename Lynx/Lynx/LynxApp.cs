@@ -1,11 +1,13 @@
 ﻿using Eto.Drawing;
 using Eto.Forms;
-using Lynx.Component;
+using Lynx.Common;
+using Lynx.Common.Linq;
+using Lynx.Components;
 using Lynx.Interface;
 using System.Diagnostics;
 
 namespace Lynx {
-    public class LynxApp : Component.Component {
+    public class LynxApp : Component {
         public LynxApp(string platformName) {
             Logger.FileLogging = false;
             Logger.Listeners.Add(new ConsoleTraceListener());
@@ -33,19 +35,14 @@ namespace Lynx {
         /// <summary>
         /// 앱
         /// </summary>
-        public Application Application { get; private set; }
+        public Eto.Forms.Application Application { get; private set; }
 
         void InitializeComponent() {
             Components.Add(new Indicator());
-            GetComponent<Indicator>().SetTitle("test tray icon");
-            var b = new Bitmap(32, 32, PixelFormat.Format32bppRgba);
-            using (var g = new Graphics(b)) {
-                g.AntiAlias = true;
-                g.DrawArc(Color.FromArgb(000_000_000_255), new RectangleF(0, 0, 32, 32), 1, 1);
-            }
-            GetComponent<Indicator>().SetImage(b);
-            GetComponent<Indicator>().SetMemu(new ContextMenu(new MenuItem[] { new ButtonMenuItem() { Text = "TestMenuItem" } }));
-            GetComponent<Indicator>().Show();
+            this.GetComponent<IIndicator>().SetTitle("test tray icon");
+            this.GetComponent<IIndicator>().SetImage(new Bitmap(32, 32, PixelFormat.Format32bppRgba));
+            this.GetComponent<IIndicator>().SetMemu(new(new[] { new ButtonMenuItem() { Text = "TestMenuItem" } }));
+            this.GetComponent<IIndicator>().Show();
         }
 
         public void Run() {

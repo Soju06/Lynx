@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Lynx.Logger.Interface;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace Lynx.Logger {
@@ -47,12 +48,25 @@ namespace Lynx.Logger {
         /// </summary>
         public MethodBase? Method { get; set; }
 
+        /// <summary>
+        /// 메시지
+        /// </summary>
         public string Message { get; private set; }
 
         string GetFileInfo => FileName.IsNullOrWhiteSpace() ? null : $"{FileName}:{FileLineNumber}";
         string GetTraceInfo => $"{(TraceClassName ? ClassName + "/" : null)}{(TraceMethodName ? MethodName : null)}";
 
-        public override string ToString() => $"{GetFileInfo}{(!TraceClassName && !TraceMethodName ? GetTraceInfo : null)} {Message}";
+        /// <summary>
+        /// 추적을 만듭니다.
+        /// </summary>
+        public string GetTrace(LoggerDetailLevel level) => 
+            (level switch {
+                LoggerDetailLevel.Full or LoggerDetailLevel.DateTraceMessage =>
+                    $"{GetFileInfo}{(!TraceClassName && !TraceMethodName ? GetTraceInfo : null)} ",
+                _ => null,
+            }) + Message;
+
+        public override string ToString() => GetTrace(LoggerDetailLevel.Full);
 
         public static implicit operator string(LoggerMethodTrace trace) => trace.ToString();
 
@@ -70,13 +84,21 @@ namespace Lynx.Logger {
     }
 
     public static class LoggerMethodTraceStatic {
+        public static LoggerMethodTrace Make(this string message, StackFrame stack) =>
+            LoggerMethodTrace.Make(stack, message);
         public static LoggerMethodTrace Make(this Exception exception, StackFrame stack, string message) =>
             LoggerMethodTrace.Make(stack, exception, message);
 
         public static LoggerMethodTrace CaptureMake(this string message) =>
-            LoggerMethodTrace.CaptureMake(message);
+            LoggerMethodTrace.Make(new StackFrame(1, true), message);
 
         public static LoggerMethodTrace CaptureMake(this Exception exception, string message) =>
-            LoggerMethodTrace.CaptureMake(exception, message);
+            LoggerMethodTrace.Make(new StackFrame(1, true), exception, message);
+
+        public static void Log(this ILogger logger, string message, LoggerStatus status = LoggerStatus.INFO, string name = null) =>
+            logger.Log(new(Make(message, new StackFrame(1, true)), name, status));
+
+        public static void Log(this ILogger logger, Exception exception, string message, string name = null) =>
+            logger.Log(new(Make(exception, new StackFrame(1, true), message), name, LoggerStatus.EXPN));
     }
 }

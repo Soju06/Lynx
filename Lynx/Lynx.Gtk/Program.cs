@@ -1,10 +1,7 @@
-﻿using Eto.Forms;
-using System;
-
-namespace Lynx.Gtk {
+﻿namespace Lynx.Gtk {
     class Program {
         [STAThread]
-        public static void Main(string[] args) {
+        public static void Main() {
             new LynxApp(Eto.Platforms.Gtk).Run();
         }
     }

@@ -1,20 +1,15 @@
-﻿namespace Lynx.Logger {
+﻿using System.Reflection;
+
+namespace Lynx.Logger {
     /// <summary>
     /// 로거 트레이스
     /// </summary>
     public struct LoggerTrace {
         public LoggerTrace(object detail, string name = null, LoggerStatus status = 0) {
-            Time = DateTime.Now;
             Detail = detail;
             Name = name;
             Status = status;
         }
-
-        /// <summary>
-        /// 시간
-        /// </summary>
-        public DateTime Time { get; private set; }
-
         /// <summary>
         /// 세부 사항
         /// </summary>
@@ -30,8 +25,26 @@
         /// </summary>
         public string Name { get; set; }
 
-        public string TimeString => Time.ToString("MM/dd/yy HH:mm:ss");
+        public static string NowTimeString => DateTime.Now.ToString("MM/dd/yy HH:mm:ss");
 
-        public override string ToString() => $"[{Name?.Append(" ")}{TimeString}] [{Status}] {Detail}";
+        /// <summary>
+        /// 추적을 만듭니다.
+        /// </summary>
+        public string GetTrace(LoggerDetailLevel level) {
+            var m = level switch {
+                LoggerDetailLevel.Message => $"[{Name?.Append(" ")}{Status}] ",
+                _ => $"[{Name?.Append(" ")}{NowTimeString}] [{Status}] ",
+            };
+            var detail = Detail;
+            if (detail != null) {
+                var method = Detail?.GetType()?.GetMethod("GetTrace", BindingFlags.Public | BindingFlags.InvokeMethod);
+                if (method?.ReturnType == typeof(string) && !method.GetParameters().TryGetValue(0, out var p) 
+                    && p.ParameterType == typeof(LoggerDetailLevel)) {
+                    m += (method.Invoke(detail, new object[] { level }) as string);
+                }
+            } return m;
+        }
+
+        public override string ToString() => GetTrace(LoggerDetailLevel.Full);
     }
 }

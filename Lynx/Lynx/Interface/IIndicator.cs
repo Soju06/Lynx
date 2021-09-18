@@ -1,12 +1,12 @@
 ﻿using Eto.Drawing;
 using Eto.Forms;
-using System;
+using Lynx.Common.Components;
 
 namespace Lynx.Interface {
     /// <summary>
     /// 알림 바 인디케이터
     /// </summary>
-    public interface IIndicator {
+    public interface IIndicator : IComponent {
         /// <summary>
         /// 이미지
         /// </summary>

@@ -21,7 +21,7 @@ namespace Lynx.Core.Components {
         public IInputHookerComponentBase SetInputHooker(IInputHookerComponentBase inputHooker) {
             if (inputHooker == null) throw new ArgumentNullException(nameof(inputHooker));
             Components.Remove(this.inputHooker);
-            Components.Add(inputHooker);
+            Components.Add(this.inputHooker = inputHooker);
             return inputHooker;
         }
 

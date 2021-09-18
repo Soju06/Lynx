@@ -1,9 +1,7 @@
-﻿using System;
-
-namespace Lynx.Mac {
+﻿namespace Lynx.Mac {
     class Program {
         [STAThread]
-        public static void Main(string[] args) {
+        public static void Main() {
             new LynxApp(Eto.Platforms.Mac64).Run();
         }
     }

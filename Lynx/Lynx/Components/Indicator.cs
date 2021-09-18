@@ -1,7 +1,7 @@
 ﻿using Eto.Drawing;
 using Eto.Forms;
+using Lynx.Common;
 using Lynx.Interface;
-using System;
 
 namespace Lynx.Components {
     /// <summary>

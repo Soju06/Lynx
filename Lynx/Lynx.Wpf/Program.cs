@@ -1,10 +1,7 @@
-﻿using Eto.Forms;
-using System;
-
-namespace Lynx.Wpf {
+﻿namespace Lynx.Wpf {
     class Program {
         [STAThread]
-        public static void Main(string[] args) {
+        public static void Main() {
             new LynxApp(Eto.Platforms.Wpf).Run();
         }
     }

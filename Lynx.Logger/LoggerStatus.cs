@@ -2,15 +2,15 @@
     /// <summary>
     /// 로거 상태
     /// </summary>
-    public enum LoggerStatus : byte {
+    public enum LoggerStatus : sbyte {
         /// <summary>
         /// 메시지
         /// </summary>
-        MESG = 0,
+        MESG = -1,
         /// <summary>
         /// 인포
         /// </summary>
-        INFO = 1,
+        INFO = 0,
         /// <summary>
         /// 경고
         /// </summary>

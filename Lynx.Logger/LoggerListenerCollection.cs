@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 
-namespace Lynx.Logger
-{
-    class LoggerListenerCollection
-    {
+namespace Lynx.Logger {
+    public class LoggerListenerCollection : Collection<> {
     }
 }
