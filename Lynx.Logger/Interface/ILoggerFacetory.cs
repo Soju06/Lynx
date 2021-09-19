@@ -1,38 +1,31 @@
-﻿using Lynx.Common;
-using Lynx.Common.Components;
-using System.Diagnostics;
+﻿using Lynx.Common.Components;
 
 namespace Lynx.Logger.Interface {
     /// <summary>
     /// 로거 팩토리
     /// </summary>
-    public interface ILoggerFacetory : IComponent {
+    public interface ILoggerFactory : ILoggerBase {
         /// <summary>
         /// 로깅합니다.
         /// </summary>
         void Log(ILogger logger, LoggerTrace trace);
 
         /// <summary>
-        /// 로거를 생성합니다.
-        /// </summary>
-        ILogger CreateLogger(string name);
-
-        /// <summary>
         /// 추적 리스너
         /// </summary>
-        TraceListenerCollection TraceListener { get; }
+        LoggerListenerCollection LoggerListener { get; }
 
         /// <summary>
         /// 리스너 추가
         /// </summary>
-        public void AddListener(TraceListener listener);
+        public ILoggerFactory AddListener(LoggerListener listener);
         /// <summary>
         /// 리스너 제거
         /// </summary>
-        public void RemoveListener(TraceListener listener);
+        public bool RemoveListener(LoggerListener listener);
         /// <summary>
         /// 리스너 제거
         /// </summary>
-        public void RemoveListener(string listenerName);
+        public bool RemoveListener(string listenerName);
     }
 }

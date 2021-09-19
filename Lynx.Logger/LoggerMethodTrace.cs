@@ -7,7 +7,7 @@ namespace Lynx.Logger {
     /// 로거 트랙
     /// </summary>
     public struct LoggerMethodTrace {
-        public LoggerMethodTrace(StackFrame stack, string message = null, bool traceClassName = true, bool traceMethodName = true) {
+        public LoggerMethodTrace(StackFrame stack, string message = null, bool traceClassName = false, bool traceMethodName = false) {
             FileName = stack.GetFileName();
             FileLineNumber = stack.GetFileLineNumber();
             Method = stack.GetMethod();
@@ -54,21 +54,22 @@ namespace Lynx.Logger {
         public string Message { get; private set; }
 
         string GetFileInfo => FileName.IsNullOrWhiteSpace() ? null : $"{FileName}:{FileLineNumber}";
-        string GetTraceInfo => $"{(TraceClassName ? ClassName + "/" : null)}{(TraceMethodName ? MethodName : null)}";
+        string GetTraceInfo(bool traceClassName, bool traceMethodName) =>
+            $"{(traceClassName ? ClassName + "/" : null)}{(traceMethodName ? MethodName : null)}";
 
         /// <summary>
         /// 추적을 만듭니다.
         /// </summary>
         public string GetTrace(LoggerDetailLevel level) => 
             (level switch {
-                LoggerDetailLevel.Full or LoggerDetailLevel.DateTraceMessage =>
-                    $"{GetFileInfo}{(!TraceClassName && !TraceMethodName ? GetTraceInfo : null)} ",
-                _ => null,
+                LoggerDetailLevel.Full => $"{GetFileInfo} {GetTraceInfo(true, true)} ",
+                LoggerDetailLevel.DateTraceMessage => $"{GetTraceInfo(true, true)} ",
+                _ => $"{(!TraceClassName && !TraceMethodName ? GetTraceInfo(TraceClassName, TraceMethodName) : null)} ",
             }) + Message;
 
         public override string ToString() => GetTrace(LoggerDetailLevel.Full);
 
-        public static implicit operator string(LoggerMethodTrace trace) => trace.ToString();
+        //public static implicit operator string(LoggerMethodTrace trace) => trace.ToString();
 
         public static LoggerMethodTrace Make(StackFrame stack, Exception exception, string message) =>
             new(stack, exception.ToString() + " | " + message);
@@ -95,10 +96,7 @@ namespace Lynx.Logger {
         public static LoggerMethodTrace CaptureMake(this Exception exception, string message) =>
             LoggerMethodTrace.Make(new StackFrame(1, true), exception, message);
 
-        public static void Log(this ILogger logger, string message, LoggerStatus status = LoggerStatus.INFO, string name = null) =>
-            logger.Log(new(Make(message, new StackFrame(1, true)), name, status));
-
         public static void Log(this ILogger logger, Exception exception, string message, string name = null) =>
-            logger.Log(new(Make(exception, new StackFrame(1, true), message), name, LoggerStatus.EXPN));
+            logger.Log(Make(exception, new StackFrame(1, true), message), LoggerStatus.EXPN, name);
     }
 }

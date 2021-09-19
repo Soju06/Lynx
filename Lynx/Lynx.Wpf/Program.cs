@@ -2,7 +2,7 @@
     class Program {
         [STAThread]
         public static void Main() {
-            new LynxApp(Eto.Platforms.Wpf).Run();
+            new LynxApplication(Eto.Platforms.Wpf).Run();
         }
     }
 }

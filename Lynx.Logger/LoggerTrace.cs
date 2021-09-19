@@ -33,18 +33,22 @@ namespace Lynx.Logger {
         public string GetTrace(LoggerDetailLevel level) {
             var m = level switch {
                 LoggerDetailLevel.Message => $"[{Name?.Append(" ")}{Status}] ",
-                _ => $"[{Name?.Append(" ")}{NowTimeString}] [{Status}] ",
+                _ => $"[{Name?.Append(" ")}{NowTimeString} {Status}] ",
             };
             var detail = Detail;
             if (detail != null) {
-                var method = Detail?.GetType()?.GetMethod("GetTrace", BindingFlags.Public | BindingFlags.InvokeMethod);
-                if (method?.ReturnType == typeof(string) && !method.GetParameters().TryGetValue(0, out var p) 
-                    && p.ParameterType == typeof(LoggerDetailLevel)) {
-                    m += (method.Invoke(detail, new object[] { level }) as string);
-                }
+                var methodt = Detail?.GetType();
+                var method = methodt?.GetMethod("GetTrace");
+                if (method?.ReturnType == typeof(string) && method.GetParameters().TryGetValue(0, out var p) 
+                    && p.ParameterType == typeof(LoggerDetailLevel))
+                    m += method.Invoke(detail, new object[] { level }) as string;
+                else m += detail.ToString();
             } return m;
         }
 
         public override string ToString() => GetTrace(LoggerDetailLevel.Full);
+
+        public static implicit operator LoggerTrace(string message) =>
+            new(message);
     }
 }

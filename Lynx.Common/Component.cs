@@ -5,11 +5,13 @@ namespace Lynx.Common {
     /// 컴포넌트
     /// </summary>
     public abstract class Component : IComponent {
-        private bool disposedValue;
+        protected bool disposedValue;
 
         public Component() {
             Components.CollectionChanged += OnCollectionChanged;
         }
+
+        public virtual string Name { get; set; }
 
         /// <summary>
         /// 부모, 없다면 null
@@ -25,13 +27,13 @@ namespace Lynx.Common {
         /// 컴포넌트를 가져옵니다.
         /// 컴포넌트가 없을 시 null을 리턴합니다.
         /// </summary>
-        public IEnumerable GetComponents(Type type) => Components.GetComponents(type);
+        public IEnumerable<IComponent> GetComponents(Type type) => Components.GetComponents(type);
 
         /// <summary>
         /// 컴포넌트를 가져옵니다.
         /// 컴포넌트가 없을 시 null을 리턴합니다.
         /// </summary>
-        public object GetComponent(Type type) => Components.GetComponent(type);
+        public IComponent GetComponent(Type type) => Components.GetComponent(type);
 
         void OnCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
             if (e.OldItems != null) foreach (var item in e.OldItems) ((Component)item).Parents = null;
@@ -52,5 +54,22 @@ namespace Lynx.Common {
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
+
+        public IComponent AddComponent(IComponent component) {
+            Components.Add(component);
+            return this;
+        }
+
+        public IComponent AddComponent(string name, IComponent component) {
+            component.Name = name;
+            Components.Add(component);
+            return this;
+        }
+
+        public bool RemoveComponent(IComponent component) =>
+            Components.Remove(component);
+
+        public bool RemoveComponent(string name) =>
+            Components.Remove(name);
     }
 }

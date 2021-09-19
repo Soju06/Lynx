@@ -4,15 +4,23 @@ using Lynx.Common;
 using Lynx.Common.Linq;
 using Lynx.Components;
 using Lynx.Interface;
-using System.Diagnostics;
+using Lynx.Logger;
+using Lynx.Logger.Attribute;
+using Lynx.Logger.Interface;
+using Lynx.Logger.Listener;
 
 namespace Lynx {
-    public class LynxApp : Component {
-        public LynxApp(string platformName) {
-            Logger.FileLogging = false;
-            Logger.Listeners.Add(new ConsoleTraceListener());
-            Logger.Init();
-            $@"
+    public class LynxApplication : Component, ILoggableComponent {
+        [LoggerName("Lynx")]
+        public ILogger Logger { get; set; }
+
+        public LynxApplication(string platformName) {
+            this.AddLoggerFactory(lf => 
+                (LoggerFactory = lf)
+                    .AddConsoleListener(null, LoggerDetailLevel.DateTraceMessage, LoggerStatus.EXPN)
+                    .AppendLogger(this), 
+                "Lynx");
+            Logger.Log($@"
 ┃                                                         ┃
 ┃  ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓  ┃
 ┃  ┃    __         __  __     __   __     __  __       ┃  ┃
@@ -23,19 +31,19 @@ namespace Lynx {
 ┃  ┃                                                   ┃  ┃
 ┃  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
 ┃                                                         ┃
-            Platfrom: {platformName}".Log();
+            Platfrom: {platformName}".CaptureMake(), LoggerStatus.MESG);
             Application = new(platformName);
         }
+
+        /// <summary>
+        /// 로거 팩토리
+        /// </summary>
+        public ILoggerFactory LoggerFactory { get; private set; }
 
         /// <summary>
         /// 플렛폼
         /// </summary>
         public string PlatformName { get; private set; }
-
-        /// <summary>
-        /// 앱
-        /// </summary>
-        public Eto.Forms.Application Application { get; private set; }
 
         void InitializeComponent() {
             Components.Add(new Indicator());
@@ -47,12 +55,11 @@ namespace Lynx {
 
         public void Run() {
             InitializeComponent();
-            Application.Run();
         }
 
         protected override void Dispose(bool disposing) {
             if (disposing) {
-                Logger.Dispose();
+
             }
             base.Dispose(disposing);
         }

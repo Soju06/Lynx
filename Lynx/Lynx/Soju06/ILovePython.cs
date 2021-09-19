@@ -1,7 +1,7 @@
 ﻿/* ========= Soju06 I LOVE PYTHON =========
  * RUNTIME: .NET Framework 4.7.2 | .NET Core 5.0 || Csharp 9.0
  * NAMESPACE: _
- * VERSION: 37
+ * VERSION: 38
  * LICENSE: MIT
  * Copyright by Soju06
  * ========= Soju06 I LOVE PYTHON ========= */
@@ -23,7 +23,7 @@ using System.Web;
 #pragma warning restore CS0105 // using 지시문을 이전에 이 네임스페이스에서 사용했습니다.
 
 internal static class ILovePython {
-    public const long _I_LOVE_PYTHON_VERSION_ = 37;
+    public const long _I_LOVE_PYTHON_VERSION_ = 38;
 
     #region Enumerable
     
@@ -69,7 +69,7 @@ internal static class ILovePython {
 
     public static bool Contains<T>(this T? e, params T[] es) => e != null && Enumerable.Contains(es, e);
 
-    public static void ForEach<T>(this IEnumerable<T> ts, Action<T> func) {
+    public static void Foreach<T>(this IEnumerable<T> ts, Action<T> func) {
         foreach (var item in ts) func.Invoke(item);
     }
 
@@ -580,40 +580,6 @@ internal static class Ran {
 }
 
 #endregion
-
-#region Object
-
-internal class Object<T, T2> {
-    public Object(T t, T2 t2) { One = t; Two = t2; }
-    public T One { get; set; }
-    public T2 Two { get; set; }
-}
-
-internal class Object<T, T2, T3> {
-    public Object(T t, T2 t2, T3 t3) { One = t; Two = t2; Three = t3; }
-    public T One { get; set; }
-    public T2 Two { get; set; }
-    public T3 Three { get; set; }
-}
-
-internal class Object<T, T2, T3, T4> {
-    public Object(T t, T2 t2, T3 t3, T4 t4) { One = t; Two = t2; Three = t3; Four = t4; }
-    public T One { get; set; }
-    public T2 Two { get; set; }
-    public T3 Three { get; set; }
-    public T4 Four { get; set; }
-}
-
-internal class Object<T, T2, T3, T4, T5> {
-    public Object(T t, T2 t2, T3 t3, T4 t4, T5 t5) { One = t; Two = t2; Three = t3; Four = t4; Five = t5; }
-    public T One { get; set; }
-    public T2 Two { get; set; }
-    public T3 Three { get; set; }
-    public T4 Four { get; set; }
-    public T5 Five { get; set; }
-}
-
-#endregion Object
 
 #pragma warning restore IDE0056 // 인덱스 연산자 사용
 #pragma warning restore IDE0079 // 불필요한 비표시 오류(Suppression) 제거

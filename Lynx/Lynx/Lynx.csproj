@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -9,11 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Eto.Forms" Version="2.5.11" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Lynx.Common\Lynx.Common.csproj" />
+    <ProjectReference Include="..\..\Lynx.Logger\Lynx.Logger.csproj" />
   </ItemGroup>
 
 </Project>

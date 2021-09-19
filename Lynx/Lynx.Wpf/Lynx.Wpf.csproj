@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows7.0</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
   
   <ItemGroup>
