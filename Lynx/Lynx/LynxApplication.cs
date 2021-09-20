@@ -1,5 +1,4 @@
-﻿using Eto.Drawing;
-using Eto.Forms;
+﻿using Lynx.App;
 using Lynx.Common;
 using Lynx.Common.Linq;
 using Lynx.Components;
@@ -15,6 +14,7 @@ namespace Lynx {
         public ILogger Logger { get; set; }
 
         public LynxApplication(string platformName) {
+            PlatformName = platformName;
             this.AddLoggerFactory(lf => 
                 (LoggerFactory = lf)
                     .AddConsoleListener(null, LoggerDetailLevel.DateTraceMessage, LoggerStatus.EXPN)
@@ -32,7 +32,6 @@ namespace Lynx {
 ┃  ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛  ┃
 ┃                                                         ┃
             Platfrom: {platformName}".CaptureMake(), LoggerStatus.MESG);
-            Application = new(platformName);
         }
 
         /// <summary>
@@ -46,15 +45,13 @@ namespace Lynx {
         public string PlatformName { get; private set; }
 
         void InitializeComponent() {
-            Components.Add(new Indicator());
-            this.GetComponent<IIndicator>().SetTitle("test tray icon");
-            this.GetComponent<IIndicator>().SetImage(new Bitmap(32, 32, PixelFormat.Format32bppRgba));
-            this.GetComponent<IIndicator>().SetMemu(new(new[] { new ButtonMenuItem() { Text = "TestMenuItem" } }));
-            this.GetComponent<IIndicator>().Show();
+            Components.Add(new LynxApp(PlatformName));
+            this.AppendLogger();
         }
 
         public void Run() {
             InitializeComponent();
+            this.GetComponent<LynxApp>().Run()();
         }
 
         protected override void Dispose(bool disposing) {

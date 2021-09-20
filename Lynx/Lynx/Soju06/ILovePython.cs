@@ -70,7 +70,8 @@ internal static class ILovePython {
     public static bool Contains<T>(this T? e, params T[] es) => e != null && Enumerable.Contains(es, e);
 
     public static void Foreach<T>(this IEnumerable<T> ts, Action<T> func) {
-        foreach (var item in ts) func.Invoke(item);
+        foreach (var item in ts) 
+            func.Invoke(item);
     }
 
     #endregion
@@ -404,6 +405,11 @@ internal static class ILovePython {
     }
 
     #endregion
+
+    public static T Return<T>(this T t, Action<T> func) {
+        func.Invoke(t);
+        return t;
+    }
 }
 
 #region Try

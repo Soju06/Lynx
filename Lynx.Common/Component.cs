@@ -11,6 +11,10 @@ namespace Lynx.Common {
             Components.CollectionChanged += OnCollectionChanged;
         }
 
+        public event EventHandler ParentAdded;
+        public event EventHandler ParentRemoved;
+        public event EventHandler Loaded;
+
         public virtual string Name { get; set; }
 
         /// <summary>
@@ -36,9 +40,32 @@ namespace Lynx.Common {
         public IComponent GetComponent(Type type) => Components.GetComponent(type);
 
         void OnCollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e) {
-            if (e.OldItems != null) foreach (var item in e.OldItems) ((Component)item).Parents = null;
-            if (e.NewItems != null) foreach (var item in e.NewItems) ((Component)item).Parents = this;
+            if (e.OldItems != null) foreach (var item in e.OldItems) {
+                    var i = (Component)item;
+                    i.Parents = null;
+                    i.OnParentRemoved(i, EventArgs.Empty);
+                }
+            if (e.NewItems != null) foreach (var item in e.NewItems) {
+                    var i = (Component)item;
+                    i.Parents = this;
+                    i.OnParentAdded(i, EventArgs.Empty);
+                }
         }
+
+        bool loadedValue;
+
+        protected virtual void OnParentAdded(object sender, EventArgs e) {
+            if (!loadedValue) {
+                loadedValue = true;
+                OnLoaded(sender, EventArgs.Empty);
+            } ParentAdded?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnParentRemoved(object sender, EventArgs e) =>
+            ParentRemoved?.Invoke(this, EventArgs.Empty);
+
+        protected virtual void OnLoaded(object sender, EventArgs e) =>
+            Loaded?.Invoke(this, EventArgs.Empty);
 
         protected virtual void Dispose(bool disposing) {
             if (!disposedValue) {
@@ -54,7 +81,7 @@ namespace Lynx.Common {
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
-
+        
         public IComponent AddComponent(IComponent component) {
             Components.Add(component);
             return this;

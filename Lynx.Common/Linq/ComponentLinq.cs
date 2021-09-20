@@ -6,6 +6,20 @@ namespace Lynx.Common.Linq {
     /// </summary>
     public static class ComponentLinq {
         /// <summary>
+        /// 컴포넌트를 추가합니다.
+        /// </summary>
+        public static T AddComponent<T>(this ComponentCollection collection, T c) where T : IComponent =>
+            (T)collection.Add(c);
+
+        /// <summary>
+        /// 컴포넌트를 추가합니다.
+        /// </summary>
+        public static T AddComponent<T>(this IComponent collection, T c) where T : IComponent {
+            collection.AddComponent(c);
+            return c;
+        }
+
+        /// <summary>
         /// 컴포넌트를 가져옵니다.
         /// 컴포넌트가 없을 시 null을 리턴합니다.
         /// </summary>

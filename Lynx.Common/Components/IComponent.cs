@@ -59,5 +59,18 @@ namespace Lynx.Common.Components {
         ///     성공 여부를 리턴합니다.
         /// </summary>
         bool RemoveComponent(string name);
+
+        /// <summary>
+        /// 부모 요소가 연결됨
+        /// </summary>
+        event EventHandler ParentAdded;
+        /// <summary>
+        /// 부모 요소와 연결이 없어짐
+        /// </summary>
+        event EventHandler ParentRemoved;
+        /// <summary>
+        /// 첫 부모 요소와 연결될때 실행됨
+        /// </summary>
+        event EventHandler Loaded;
     }
 }

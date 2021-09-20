@@ -90,6 +90,11 @@ namespace Lynx.Logger {
             AppendLogger((ILoggerBase)lcomponent.Logger, components);
             return lcomponent;
         }
+        
+        public static ILoggableComponent AppendLogger(this ILoggableComponent component) {
+            AppendLogger(component, component.Components);
+            return component;
+        }
 
         public static ILoggerBase AppendLogger(this ILoggerBase logger, ILoggableComponent component) {
             if (logger == null) throw new ArgumentNullException(nameof(logger));
