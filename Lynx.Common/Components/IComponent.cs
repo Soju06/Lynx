@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-
-namespace Lynx.Common.Components {
+﻿namespace Lynx.Common.Components {
     /// <summary>
     ///  컴포넌트
     /// </summary>

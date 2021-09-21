@@ -5,6 +5,11 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<Deterministic>false</Deterministic>
+  </PropertyGroup>
+	
   <ItemGroup>
     <ProjectReference Include="..\Lynx.Common\Lynx.Common.csproj" />
   </ItemGroup>

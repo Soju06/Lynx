@@ -60,5 +60,9 @@ namespace Lynx {
             }
             base.Dispose(disposing);
         }
+
+        public void OnLoggerInited(ILogger logger) {
+
+        }
     }
 }

@@ -1,0 +1,5 @@
+[assembly: System.Reflection.AssemblyCompany("Lynx.Common")]
+[assembly: System.Reflection.AssemblyConfiguration("Debug")]
+[assembly: System.Reflection.AssemblyProduct("Lynx.Common")]
+[assembly: System.Reflection.AssemblyTitle("Lynx.Common")]
+[assembly: System.Reflection.AssemblyVersion("1.0.*")]

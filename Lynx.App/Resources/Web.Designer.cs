@@ -22,14 +22,14 @@ namespace Lynx.App.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class App {
+    public class Web {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal App() {
+        internal Web() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Lynx.App.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Lynx.App.Resources.App", typeof(App).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Lynx.App.Resources.Web", typeof(Web).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,22 +61,27 @@ namespace Lynx.App.Resources {
         }
         
         /// <summary>
-        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
+        ///   &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body style=&quot;
+        ///    width: 100%;
+        ///    height: 100%;
+        ///    overflow: hidden;
+        ///    padding: 0;
+        ///    margin: 0;
+        ///    background-color: rgb(24, 25, 38);
+        ///&quot; onload=&quot;document.getElementById(&apos;a&apos;).style.opacity = &apos;1&apos;;&quot;&gt;&lt;script&gt;function setValue(v) {
+        ///    if (v &lt; 0) v = 0;
+        ///    else if (v &gt; 100) v = 100;
+        ///    document.getElementById(&apos;p&apos;).style.width = `${v}%`;
+        ///}&lt;/script&gt;&lt;div style=&quot;
+        ///    width: calc(100% - 8px);
+        ///    height: calc(100% - 8px);
+        ///    padding: 4px;
+        ///    border-radius: 6px;
+        ///    opacity[나머지 문자열은 잘림]&quot;;과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
-        public static byte[] LynxIcon {
+        public static string ProgressBar {
             get {
-                object obj = ResourceManager.GetObject("LynxIcon", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Byte[] 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        public static byte[] LynxSmallIcon {
-            get {
-                object obj = ResourceManager.GetObject("LynxSmallIcon", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("ProgressBar", resourceCulture);
             }
         }
     }

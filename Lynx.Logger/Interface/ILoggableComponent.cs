@@ -6,5 +6,10 @@ namespace Lynx.Logger.Interface {
         /// 로거
         /// </summary>
         ILogger Logger { get; set; }
+
+        /// <summary>
+        /// 로거 설정됨
+        /// </summary>
+        void OnLoggerInited(ILogger logger);
     }
 }

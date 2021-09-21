@@ -1,0 +1,5 @@
+[assembly: System.Reflection.AssemblyCompany("Lynx.Blazor")]
+[assembly: System.Reflection.AssemblyConfiguration("Debug")]
+[assembly: System.Reflection.AssemblyProduct("Lynx.Blazor")]
+[assembly: System.Reflection.AssemblyTitle("Lynx.Blazor")]
+[assembly: System.Reflection.AssemblyVersion("1.0.*")]

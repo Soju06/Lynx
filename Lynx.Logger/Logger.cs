@@ -102,7 +102,9 @@ namespace Lynx.Logger {
             var type = component.GetType();
             var field = type.GetProperty(nameof(component.Logger));
             var name = field.GetCustomAttribute<LoggerNameAttribute>()?.Name;
-            field.SetValue(component, logger.CreateLogger(name));
+            var clogger = logger.CreateLogger(name);
+            field.SetValue(component, clogger);
+            component.OnLoggerInited(clogger);
             return null;
         }
 

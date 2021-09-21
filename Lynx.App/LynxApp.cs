@@ -37,7 +37,10 @@ namespace Lynx.App {
         /// <summary>
         /// UI 스레드를 시작합니다.
         /// </summary>
-        public Action Run() => () => Application.Run(new Forms.ManagementForm());
+        public Action Run() => () => Application.Run(new Forms.ManagementUI());
+
+        public void OnLoggerInited(ILogger logger) =>
+            UILogger = logger.CreateLogger("UI Thread");
 
         /// <summary>
         /// 플렛폼
@@ -50,5 +53,10 @@ namespace Lynx.App {
         public Application Application { get; private set; }
 
         public readonly static CultureInfo CurrentCulture = CultureInfo.CreateSpecificCulture("en");
+
+        /// <summary>
+        /// ui용 로거
+        /// </summary>
+        internal static ILogger UILogger { get; private set; }
     }
 }

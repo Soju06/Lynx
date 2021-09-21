@@ -5,6 +5,11 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<Deterministic>false</Deterministic>
+  </PropertyGroup>
+	
   <ItemGroup>
     <Compile Include="..\Lynx\Lynx\Soju06\ILovePython.cs" Link="Soju06\ILovePython.cs" />
   </ItemGroup>

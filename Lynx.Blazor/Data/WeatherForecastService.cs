@@ -1,9 +1,4 @@
-using System;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Lynx.Blazor.Data
-{
+namespace Lynx.Blazor.Data {
     public class WeatherForecastService
     {
         private static readonly string[] Summaries = new[]

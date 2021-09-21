@@ -1,16 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
+	
+  <PropertyGroup>
+	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+	<Deterministic>false</Deterministic>
+  </PropertyGroup>
+	
 
   <ItemGroup>
     <Compile Include="..\Lynx\Lynx\Soju06\ILovePython.cs" Link="Soju06\ILovePython.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Eto.Forms" Version="2.5.11" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,17 +25,33 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Eto.Forms" Version="2.5.11" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Forms\ManagementUI.eto.cs">
+      <DependentUpon>ManagementUI.cs</DependentUpon>
+    </Compile>
     <Compile Update="Resources\App.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>App.resx</DependentUpon>
     </Compile>
+    <Compile Update="Resources\Web.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Web.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Resources\App.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>App.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Web.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Web.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

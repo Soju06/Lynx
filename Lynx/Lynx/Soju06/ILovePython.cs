@@ -8,6 +8,7 @@
 
 #pragma warning disable IDE0079 // 불필요한 비표시 오류(Suppression) 제거
 #pragma warning disable IDE0056 // 인덱스 연산자 사용
+#pragma warning disable CS8632 // nullable 참조 형식에 대한 주석은 코드에서 '#nullable' 주석 컨텍스트 내에만 사용되어야 합니다.
 
 #pragma warning disable CS0105 // using 지시문을 이전에 이 네임스페이스에서 사용했습니다.
 using System;
@@ -588,4 +589,5 @@ internal static class Ran {
 #endregion
 
 #pragma warning restore IDE0056 // 인덱스 연산자 사용
+#pragma warning restore CS8632 // nullable 참조 형식에 대한 주석은 코드에서 '#nullable' 주석 컨텍스트 내에만 사용되어야 합니다.
 #pragma warning restore IDE0079 // 불필요한 비표시 오류(Suppression) 제거
