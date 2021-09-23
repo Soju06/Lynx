@@ -6,7 +6,7 @@ namespace Lynx.App.Forms {
 	partial class UpdateUI : Form {
 		void InitializeComponent() {
 			Title = "My Eto Form";
-			Size = new Size(580, 360);
+			Size = new Size(600, 400);
 			BackgroundColor = Color.FromArgb(24, 25, 38);
 			Resizable = false;
 
@@ -15,8 +15,9 @@ namespace Lynx.App.Forms {
 				Size = Size,
 				Rows = {
 					new DynamicLayout() {
-						Size = new Size(Size.Width, 64),
-                    }.Return(x => x.AddCentered(
+						Size = new Size(Size.Width, 64 + 10),
+						Padding = 10
+					}.Return(x => x.AddCentered(
 						new TableRow(
 							new ImageView() {
 								Image = new Bitmap(@"R:\Downloads\lynx_icon.png"),
@@ -31,10 +32,19 @@ namespace Lynx.App.Forms {
 							}))
 						)
 					)),
-					new TableRow(new Controls.ProgressBar() {
-						Size = new(-1, 40),
-					}),
-					new TableRow(new TableCell(), "Please login:"),
+					new DynamicLayout() {
+						Padding = 12
+					}.Return(x => {
+						x.AddAutoSized(new Label() { 
+							Text = "0% - Initializing...",
+							Font = SystemFonts.Bold(),
+							TextColor = Color.FromArgb(210, 210, 210)
+						}, new(4, 4));
+						x.Add(new ProgressBar() {
+							Size = new(-1, 40)
+						});
+						x.BeginVertical(new(0, 14)).Add(new TextArea());
+					})
 				}
 			};
 		}

@@ -8,7 +8,7 @@ namespace Lynx.App.Forms.Controls {
 
 			new Thread(() => {
                 while (true) {
-					for (int i = 0; i < 10; i += 2) {
+					for (int i = 0; i < 11; i += 2) {
 						Application.Instance.Invoke(() => SetValue(i * 10));
 						Thread.Sleep(800);
 					}
@@ -30,10 +30,9 @@ namespace Lynx.App.Forms.Controls {
 		/// °ª ¼³Á¤
 		/// </summary>
 		public void SetValue(int v) {
-			LynxApp.UILogger?.Log($"{Web.Loaded} {v}".CaptureMake(), LoggerStatus.WARN);
+			value = v;
 			if (!Web.Loaded) return;
 			try {
-				value = v;
 				Web.ExecuteScript($"document.getElementById('p').style.width = '{v}%'");
 				uiValue = v;
             } catch {

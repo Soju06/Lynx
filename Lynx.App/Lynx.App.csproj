@@ -21,10 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Soju06\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Eto.Forms" Version="2.5.11" />
   </ItemGroup>
 

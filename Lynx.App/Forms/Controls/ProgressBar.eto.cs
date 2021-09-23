@@ -1,3 +1,4 @@
+using System;
 using Eto.Drawing;
 using Eto.Forms;
 using Lynx.Logger;
@@ -8,8 +9,6 @@ namespace Lynx.App.Forms.Controls {
 
 		void InitializeComponent() {
 			Size = new Size(416, 52);
-			BackgroundColor = Color.FromArgb(255,255,255);
-
 			Content = Web = new WebView() { 
 				BackgroundColor = BackgroundColor
 			}.Return(x => {
@@ -25,3 +24,4 @@ namespace Lynx.App.Forms.Controls {
         }
     }
 }
+ 

@@ -61,27 +61,20 @@ namespace Lynx.App.Resources {
         }
         
         /// <summary>
-        ///   &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body style=&quot;
-        ///    width: 100%;
-        ///    height: 100%;
-        ///    overflow: hidden;
-        ///    padding: 0;
-        ///    margin: 0;
-        ///    background-color: rgb(24, 25, 38);
-        ///&quot; onload=&quot;document.getElementById(&apos;a&apos;).style.opacity = &apos;1&apos;;&quot;&gt;&lt;script&gt;function setValue(v) {
-        ///    if (v &lt; 0) v = 0;
-        ///    else if (v &gt; 100) v = 100;
-        ///    document.getElementById(&apos;p&apos;).style.width = `${v}%`;
-        ///}&lt;/script&gt;&lt;div style=&quot;
-        ///    width: calc(100% - 8px);
-        ///    height: calc(100% - 8px);
-        ///    padding: 4px;
-        ///    border-radius: 6px;
-        ///    opacity[나머지 문자열은 잘림]&quot;;과(와) 유사한 지역화된 문자열을 찾습니다.
+        ///   &lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;/head&gt;&lt;body style=&quot;width: 100%;height: 100%;overflow: hidden;padding: 0;margin: 0;background-color: rgb(24, 25, 38);&quot;&gt;&lt;div style=&quot;width: calc(100% - 8px);height: calc(100vh - 8px);padding: 4px;border-radius: 14px;opacity: 1;background-color: #2a2c42;&quot; id=&quot;a&quot;&gt;&lt;div style=&quot;width: 20%; background: linear-gradient(90deg, rgb(254, 71, 87) 29%, rgb(253, 121, 78) calc((100vw - 8px) - 26%), rgb(252, 168, 69) calc(100vw - 8px)); height: 100%; border-ra[나머지 문자열은 잘림]&quot;;과(와) 유사한 지역화된 문자열을 찾습니다.
         /// </summary>
         public static string ProgressBar {
             get {
                 return ResourceManager.GetString("ProgressBar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   &lt;html&gt;&lt;head&gt;&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge&quot;&gt;&lt;/head&gt;&lt;body style=&quot;width: 100%;height: 100vh;overflow: hidden;padding: 0;margin: 0;background-color: rgb(24, 25, 38);&quot;&gt;&lt;textarea style=&quot;width: 100%;height: 100%;border-radius: 14px;opacity: 1;background-color: rgb(42, 44, 66);border: none;outline: none;padding: 10px;color: rgb(221, 221, 221);font-family: Consolas, sans-serif;margin: 0px;resize: none;font-size: 14px;&quot; id=&quot;a&quot;&gt;&lt;/textarea&gt;&lt;/body&gt;&lt;/html&gt;과(와) 유사한 지역화된 문자열을 찾습니다.
+        /// </summary>
+        public static string TextArea {
+            get {
+                return ResourceManager.GetString("TextArea", resourceCulture);
             }
         }
     }
