@@ -12,5 +12,15 @@
         /// 관리 포트
         /// </summary>
         public const ushort ManagementPort = 34142;
+
+        /// <summary>
+        /// 앱 경로
+        /// </summary>
+        public static string ApplicationPath => AppDomain.CurrentDomain.BaseDirectory;
+
+        /// <summary>
+        /// 앱 풀네임
+        /// </summary>
+        public static string ApplicationFullName => System.Reflection.Assembly.GetEntryAssembly().Location;
     }
 }

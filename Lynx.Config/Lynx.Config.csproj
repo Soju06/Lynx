@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -8,5 +8,14 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Deterministic>false</Deterministic>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="LiteDB" Version="5.0.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Lynx.Common\Lynx.Common.csproj" />
+	  <ProjectReference Include="..\Lynx.Logger\Lynx.Logger.csproj" />
+	</ItemGroup>
 
 </Project>
