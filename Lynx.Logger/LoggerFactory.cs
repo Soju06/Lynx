@@ -67,9 +67,14 @@ namespace Lynx.Logger {
         protected override void Dispose(bool disposing) {
             if (!disposedValue) {
                 if (disposing) {
-                    tokenSource?.Cancel();
-                    task?.Dispose();
-                    tokenSource?.Dispose();
+                    try {
+                        tokenSource?.Cancel();
+                        task?.Wait(500);
+                        tokenSource?.Dispose();
+                        task?.Dispose();
+                    } catch {
+
+                    }
                 }
             } base.Dispose(disposing);
         }

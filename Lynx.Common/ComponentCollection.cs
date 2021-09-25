@@ -1,5 +1,6 @@
 ﻿using Lynx.Common.Components;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Transactions;
 
 namespace Lynx.Common {
@@ -54,5 +55,20 @@ namespace Lynx.Common {
         /// </summary>
         public bool Remove(string name) =>
             Remove(this.Select(e => e.Name == name));
+
+        /// <summary>
+        /// 모든 컴포넌트를 제거합니다.
+        /// </summary>
+        public void DisposeAll() {
+            while (Count > 0) {
+                try {
+                    this[0]?.Dispose();
+                } catch (Exception ex) {
+                    Debug.WriteLine($"DisposeAll exception {ex}");
+                } finally {
+                    RemoveAt(0);
+                }
+            }
+        }
     }
 }

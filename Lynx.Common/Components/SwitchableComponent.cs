@@ -48,19 +48,22 @@ namespace Lynx.Common.Components {
         public virtual bool SetState(SwitchState state) {
             if ((!CanPause && state == SwitchState.Paused) || (!CanStop && state == SwitchState.Stoped))
                 throw new NotSupportedException($"State {state} is not supported by the component."); // 미지원 상태 예외
-            var s = State;
-            return (State = OnStateChange(State)) == s;
+            return (State = OnStateChange(state)) == state;
         }
 
         /// <summary>
-        /// 자식 컴포넌트들의 스위치 상태를 set합니다.
+        /// 자식 컴포넌트들의 스위치 상태를 전파합니다.
         /// </summary>
         /// <param name="state"></param>
         /// <returns></returns>
         protected virtual int SetChildComponentState(SwitchState state) {
             int i = 0;
             foreach (var item in this.GetComponents<ISwitchableComponent>()) {
-                i++; item.SetState(state);
+                if((state == SwitchState.Paused && item.CanPause) ||
+                   (state == SwitchState.Stoped && item.CanStop) || 
+                   state == SwitchState.Running) {
+                    i++; item.SetState(state);
+                }
             } return i;
         }
 

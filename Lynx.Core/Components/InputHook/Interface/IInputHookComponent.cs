@@ -1,6 +1,6 @@
 ﻿using Lynx.Common.Interface;
 
-namespace Lynx.Core.Components.InputHook.Interface {
+namespace Lynx.Core.Components.Interface {
     /// <summary>
     /// 인풋 후킹 컴포넌트
     /// </summary>

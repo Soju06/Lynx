@@ -28,6 +28,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lynx.Logger", "Lynx.Logger\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Platforms", "Platforms", "{7CA5C39C-A8FC-4BB3-860D-4EBFBCB150A9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lynx.Config", "Lynx.Config\Lynx.Config.csproj", "{A3552721-85D7-4D3C-B0BD-25F84BF4A7DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -70,6 +72,10 @@ Global
 		{EE17587A-56F0-4BB1-8AED-70B0FD68B305}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE17587A-56F0-4BB1-8AED-70B0FD68B305}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE17587A-56F0-4BB1-8AED-70B0FD68B305}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3552721-85D7-4D3C-B0BD-25F84BF4A7DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3552721-85D7-4D3C-B0BD-25F84BF4A7DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3552721-85D7-4D3C-B0BD-25F84BF4A7DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3552721-85D7-4D3C-B0BD-25F84BF4A7DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

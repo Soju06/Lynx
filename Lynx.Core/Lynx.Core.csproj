@@ -9,9 +9,18 @@
 	<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 	<Deterministic>false</Deterministic>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Lynx\Lynx\Soju06\ILovePython.cs" Link="Soju06\ILovePython.cs" />
+  </ItemGroup>
 	
   <ItemGroup>
     <ProjectReference Include="..\Lynx.Common\Lynx.Common.csproj" />
+    <ProjectReference Include="..\Lynx.Logger\Lynx.Logger.csproj" />
+  </ItemGroup>
+	
+  <ItemGroup>
+    <Folder Include="Soju06\" />
   </ItemGroup>
 
 </Project>

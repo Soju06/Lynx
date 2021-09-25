@@ -2,6 +2,7 @@
 using Lynx.Common;
 using Lynx.Common.Linq;
 using Lynx.Components;
+using Lynx.Core;
 using Lynx.Interface;
 using Lynx.Logger;
 using Lynx.Logger.Attribute;
@@ -46,6 +47,7 @@ namespace Lynx {
 
         void InitializeComponent() {
             Components.Add(new LynxApp(PlatformName));
+            Components.Add(new LynxCore());
             this.AppendLogger();
         }
 
@@ -54,15 +56,17 @@ namespace Lynx {
             this.GetComponent<LynxApp>().Run()();
         }
 
-        protected override void Dispose(bool disposing) {
-            if (disposing) {
-
-            }
-            base.Dispose(disposing);
-        }
-
         public void OnLoggerInited(ILogger logger) {
 
+        }
+
+        protected override void Dispose(bool disposing) {
+            if(!disposedValue) {
+                if(disposing) {
+                    Components.DisposeAll();
+                }
+            }
+            base.Dispose(disposing);
         }
     }
 }

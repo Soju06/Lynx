@@ -10,16 +10,17 @@ namespace Lynx.App.UI.Components {
     public class Indicator : Component, IIndicator {
         readonly TrayIndicator Tray;
 
-        public Indicator() {
+        public Indicator(EventHandler actuvatedEvent = null) {
             Tray = new();
             Tray.Activated += OnActivated;
+            if (actuvatedEvent != null) Activated += actuvatedEvent;
         }
 
         public Image Image { get => Tray.Image; set => Tray.Image = value; }
         public string Title { get => Tray.Title; set => Tray.Title = value; }
         public ContextMenu Menu { get => Tray.Menu; set => Tray.Menu = value; }
 
-        public event EventHandler<EventArgs> Activated;
+        public event EventHandler Activated;
 
         public Image GetImage() => Image;
         public IIndicator SetImage(Image image) => this.Return(_ => Image = image);

@@ -1,6 +1,7 @@
 ﻿using Lynx.Common.Components;
 using Lynx.Common.Interface;
-using Lynx.Core.Components.InputHook.Interface;
+using Lynx.Core.Components.Interface;
+using Lynx.Logger.Interface;
 
 namespace Lynx.Core.Components.InputHook.Base {
     /// <summary>
@@ -10,6 +11,13 @@ namespace Lynx.Core.Components.InputHook.Base {
         public override bool CanStop { get; } = true;
 
         public override bool CanPause { get; } = true;
+
+        public virtual ILogger Logger { get; set; }
+
+        /// <summary>
+        /// 키보드
+        /// </summary>
+        public KeyboardModel KeyboardModel { get; set; }
 
         public override SwitchState OnStateChange(SwitchState state) {
             if(State != state) {
@@ -47,5 +55,9 @@ namespace Lynx.Core.Components.InputHook.Base {
         void IInputHookerComponentBase.HookStop() => HookStop();
 
         void IInputHookerComponentBase.HookPause() => HookPause();
+
+        public virtual void OnLoggerInited(ILogger logger) {
+
+        }
     }
 }

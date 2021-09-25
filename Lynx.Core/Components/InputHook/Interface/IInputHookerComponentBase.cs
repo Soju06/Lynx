@@ -1,7 +1,9 @@
 ﻿using Lynx.Common.Interface;
+using Lynx.Core.Components.InputHook;
+using Lynx.Logger.Interface;
 
-namespace Lynx.Core.Components.InputHook.Interface {
-    public interface IInputHookerComponentBase : ISwitchableComponent {
+namespace Lynx.Core.Components.Interface {
+    public interface IInputHookerComponentBase : ISwitchableComponent, ILoggableComponent {
         /// <summary>
         /// 후킹 시작
         /// </summary>
@@ -16,5 +18,10 @@ namespace Lynx.Core.Components.InputHook.Interface {
         /// 후킹 일시 정지
         /// </summary>
         protected void HookPause();
+
+        /// <summary>
+        /// 키보드
+        /// </summary>
+        KeyboardModel KeyboardModel { get; set; }
     }
 }

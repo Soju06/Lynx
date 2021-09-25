@@ -56,6 +56,6 @@ namespace Lynx.App.UI.Interface {
         /// <summary>
         /// 좌클릭 이벤트
         /// </summary>
-        event EventHandler<EventArgs> Activated;
+        event EventHandler Activated;
     }
 }
